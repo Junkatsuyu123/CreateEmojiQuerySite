@@ -43,7 +43,7 @@ server.on("request", function (request, response) {
                                 console.log('Done.');
                             }
                         })
-                        for (let i = 0; i < num; i++){
+                        for (let i = 0; i < Number(num); i++){
                             const current_date = new Date();
                             const old_date = new Date(2000, 1, 1, 9, 0, 0);
                             var date = (current_date - old_date).toString(36).padStart(8, '0') + TXT[Math.floor(Math.random() * TXT.length)] + TXT[Math.floor(Math.random() * TXT.length)];
