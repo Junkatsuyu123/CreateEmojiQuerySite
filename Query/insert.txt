@@ -12,5 +12,6 @@ INSERT INTO emoji(id,"updatedAt",name,host,"originalUrl",uri,type,aliases,catego
  from drive_file
  inner join "user" on "user".id = drive_file."userId"
  where "user".username = '{USERNAME}' 
+ and trim("user".host) is null
  and Not EXISTS (select emoji.name from emoji where emoji.name = substring(drive_file.name,1,length(drive_file.name)-4))
  LIMIT 1;
