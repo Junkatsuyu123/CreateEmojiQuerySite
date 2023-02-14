@@ -20,6 +20,7 @@ server.on("request", function (request, response) {
                response.write( content );
             response.end();
             if (request.method === 'POST') {
+                alert("POSTだよ");
                 var data = '';
                 request.on('data', function (chunk) {
                     if (chunk != null) {
@@ -43,7 +44,6 @@ server.on("request", function (request, response) {
                                 console.log('Done.');
                             }
                         })
-                        alert("num="+num);
                         for (let i = 0; i < Number(num); i++){
                             const current_date = new Date();
                             const old_date = new Date(2000, 1, 1, 9, 0, 0);
