@@ -19,23 +19,10 @@
                 <tr class="Row">
                     <th colspan="2">追加する絵文字の個数</th>
                     <td> <input type="number" min="0" name="EmojiNum" placeholder="追加する絵文字の個数" class="TextBox"></td>
-                    <td><input type="submit" value="クエリ作成" class = "CreateBtn" onclick="button_click()" class="QueryButton"></td>
+                    <td><button type="submit"  class = "CreateBtn" onclick="button_click()" class="QueryButton">クエリ作成</button></td>
                 </tr>
             </thead>
         </table>
-        <div>
-            クエリができたら↓にリンクができます。
-        </div>
-        <div>
-            <a href="javascript:void(0)" download id="DLlink" >ダウンロードはこちら</a>
-        </div>
-        <script type="text/javascript">
-            function button_click() {
-              var target = document.getElementById("DLlink");
-              target.href = "./CreateQuery/"+"query_insert_"+document.getElementById("UserID").value+".txt";
-              target.innerText = "query_insert_"+document.getElementById("UserID").value+".txt";
-            }
-        </script>
     </form>
 </body>
 </html>
