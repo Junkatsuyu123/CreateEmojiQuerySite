@@ -3,7 +3,7 @@
 const http = require("http");
 //const server = http.createServer();
 const fs = require("fs");
-var html = fs.readFileSync('./doc/index.html');
+var html = fs.readFileSync('./index.html');
 require("date-utils");
 const DAYS_MSEC = 86400000;
 const HOUR_MSEC = 3600000;
@@ -32,7 +32,7 @@ app.post("/", function (request, response) {
                 data += chunk
                 var name = data.split('&')[0].split('=')[1];
                 var num = data.split('&')[1].split('=')[1];
-                fs.copyFile(__dirname+"./doc/Query/insert.txt", 'query_insert.txt', (err) => {
+                fs.copyFile(__dirname+"./Query/insert.txt", 'query_insert.txt', (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
