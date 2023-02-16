@@ -1,0 +1,2 @@
+update emoji set category = '{CATEGORY}' where aliases[1] = 'auto' ;
+update emoji set aliases = '{"{TAG}"}' where aliases[1] = 'auto' ;

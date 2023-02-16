@@ -1,0 +1,21 @@
+body{
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: rgb(221, 221, 221);
+}
+#Title{
+    color: blanchedalmond;
+    width: auto;
+    height: auto;
+    text-align: left;
+}
+.Row{
+    text-align: left;
+}
+.TextBox{
+    margin-left: 20px;
+    width: 250px;
+}
+.QueryButton{
+    width: 2000px;
+}
