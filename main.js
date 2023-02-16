@@ -32,7 +32,7 @@ app.post("/", function (request, response) {
                 data += chunk
                 var name = data.split('&')[0].split('=')[1];
                 var num = data.split('&')[1].split('=')[1];
-                fs.copyFile(__dirname+"https://junkatsuyu123.github.io/CreateEmojiQuerySite/Query/insert.txt", 'query_insert.txt', (err) => {
+                fs.copyFile("https://junkatsuyu123.github.io/CreateEmojiQuerySite/Query/insert.txt", 'query_insert.txt', (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
@@ -40,7 +40,7 @@ app.post("/", function (request, response) {
                         console.log('Done.');
                     }
                 });
-                var text = fs.readFileSync(__dirname+"/query_insert.txt", 'utf8' , (err) => {
+                var text = fs.readFileSync("https://junkatsuyu123.github.io/CreateEmojiQuerySite/Query/insert.txt", 'utf8' , (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
