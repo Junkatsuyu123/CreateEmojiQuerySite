@@ -3,8 +3,7 @@
 const http = require("http");
 //const server = http.createServer();
 const fs = require("fs");
-const { encode } = require("punycode");
-var html = require('fs').readFileSync('./doc/index.html');
+var html = fs.readFileSync('./doc/index.html');
 require('date-utils');
 const DAYS_MSEC = 86400000;
 const HOUR_MSEC = 3600000;
@@ -23,7 +22,7 @@ var port = process.env.PORT || 8080;
 app.listen( port );
 console.log("server starting on " + port + " ...");
 
-app.post("/", function (request, response, next) {
+app.post("/", function (request, response) {
     if (request.method === 'POST') {
         var file_name = '';
         var data = '';
