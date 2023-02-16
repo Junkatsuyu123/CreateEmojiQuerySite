@@ -33,7 +33,7 @@ app.post("/", function (request, response, next) {
                 data += chunk
                 var name = data.split('&')[0].split('=')[1];
                 var num = data.split('&')[1].split('=')[1];
-                fs.copyFile(__dirname+"/Query/insert.txt", 'query_insert.txt', (err) => {
+                fs.copyFile(__dirname+"./doc/Query/insert.txt", 'query_insert.txt', (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
