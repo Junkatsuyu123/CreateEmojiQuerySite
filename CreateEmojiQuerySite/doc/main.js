@@ -4,7 +4,7 @@ const http = require("http");
 //const server = http.createServer();
 const fs = require("fs");
 var html = fs.readFileSync('./doc/index.html');
-require('date-utils');
+require("date-utils");
 const DAYS_MSEC = 86400000;
 const HOUR_MSEC = 3600000;
 const MINUTE_MSEC = 60000;
@@ -13,7 +13,7 @@ const SECOND_MSEC = 1000;
 const TXT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('');
 
 
-var express = require('express');
+var express = require("express");
 var app = express();
 
 app.use( express.static( __dirname) );
