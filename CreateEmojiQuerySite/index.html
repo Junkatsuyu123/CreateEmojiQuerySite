@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/main.css'>
+</head>
+<body>
+    <h1 id="Title">絵文字一括登録クエリ　作成</h1>
+    <form method="POST">
+        <table>
+            <thead>
+                <tr class="Row">
+                    <th colspan="2">ユーザID</th>
+                    <td><input type="text" name="UserID" id="UserID"  placeholder="ユーザID" class="TextBox"></td>
+                </tr>
+                <tr class="Row">
+                    <th colspan="2">追加する絵文字の個数</th>
+                    <td> <input type="number" min="0" name="EmojiNum" placeholder="追加する絵文字の個数" class="TextBox"></td>
+                    <td><button type="submit"  class = "CreateBtn" onclick="button_click()" class="QueryButton">クエリ作成</button></td>
+                </tr>
+            </thead>
+        </table>
+    </form>
+</body>
+</html>
