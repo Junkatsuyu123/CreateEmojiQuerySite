@@ -3,7 +3,7 @@
 const http = require("http");
 //const server = http.createServer();
 const fs = require("fs");
-var html = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/index.html');
+//var html = fs.readFileSync('./index.html');
 require("date-utils");
 const DAYS_MSEC = 86400000;
 const HOUR_MSEC = 3600000;
@@ -16,14 +16,13 @@ const TXT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".spl
 var express = require("express");
 var app = express();
 
-app.use( express.static( __dirname) );
+app.use( express.static(  __dirname + '/docs' ) );
 
 var port = process.env.PORT || 8080;
 app.listen( port );
 console.log("server starting on " + port + " ...");
 
 app.post("/", function (request, response) {
-    alert('test');
     if (request.method === 'POST') {
         var file_name = '';
         var data = '';
@@ -33,7 +32,7 @@ app.post("/", function (request, response) {
                 data += chunk
                 var name = data.split('&')[0].split('=')[1];
                 var num = data.split('&')[1].split('=')[1];
-                fs.copyFile("https://junkatsuyu123.github.io/CreateEmojiQuerySite/Query/insert.txt", 'query_insert.txt', (err) => {
+                fs.copyFile(__dirname+'/docs'+"/Query/insert.txt", 'query_insert.txt', (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
@@ -41,7 +40,7 @@ app.post("/", function (request, response) {
                         console.log('Done.');
                     }
                 });
-                var text = fs.readFileSync("https://junkatsuyu123.github.io/CreateEmojiQuerySite/Query/insert.txt", 'utf8' , (err) => {
+                var text = fs.readFileSync(__dirname+"\\query_insert.txt", 'utf8' , (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
@@ -86,7 +85,7 @@ app.post("/", function (request, response) {
                 if (fs.existsSync(file_name)) {
                     response.download(file_name);
                 }
-          //return response.sendFile(__dirname+"/index.html");
+          return response.sendFile(__dirname+'/docs'+"/index.html");
           })
       }
 });
