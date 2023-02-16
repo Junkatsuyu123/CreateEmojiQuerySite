@@ -23,6 +23,7 @@ app.listen( port );
 console.log("server starting on " + port + " ...");
 
 app.post("/", function (request, response) {
+    alert('test');
     if (request.method === 'POST') {
         var file_name = '';
         var data = '';
