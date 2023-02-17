@@ -16,9 +16,9 @@ const TXT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".spl
 var express = require("express");
 var app = express();
 
-app.use( express.static(  __dirname + '/docs' ) );
+//app.use( express.static(  __dirname + '/docs' ) );
 
-//app.use( express.static('https://junkatsuyu123.github.io/CreateEmojiQuerySite' + '/docs' ) );
+app.use( express.static('https://junkatsuyu123.github.io/CreateEmojiQuerySite' + '/docs' ) );
 
 var port = process.env.PORT || 8080;
 app.listen( port );
@@ -45,6 +45,7 @@ app.post("/", function (request, response) {
                 });*/
                 //var text = fs.readFileSync(__dirname+"\\query_insert.txt", 'utf8' , (err) => {
                 //var text = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"query_insert.txt", 'utf8' , (err) => {
+                alert("test");
                 var text = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"Query/insert.txt", 'utf8' , (err) => {
                     if (err) {
                         console.log(err.stack);
