@@ -33,7 +33,7 @@ app.post("/", function (request, response) {
                 var name = data.split('&')[0].split('=')[1];
                 var num = data.split('&')[1].split('=')[1];
                 //fs.copyFile(__dirname+'/docs'+"/Query/insert.txt", 'query_insert.txt', (err) => {
-                fs.copyFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+'docs'+"/Query/insert.txt", 'query_insert.txt', (err) => {
+                fs.copyFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"Query/insert.txt", 'query_insert.txt', (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
@@ -43,7 +43,7 @@ app.post("/", function (request, response) {
                 });
                 //var text = fs.readFileSync(__dirname+"\\query_insert.txt", 'utf8' , (err) => {
                 //var text = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"query_insert.txt", 'utf8' , (err) => {
-                var text = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+'docs'+"/Query/insert.txt", 'utf8' , (err) => {
+                var text = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"Query/insert.txt", 'utf8' , (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
@@ -66,7 +66,7 @@ app.post("/", function (request, response) {
                     text = text.replace("{USERNAME}", name);
                     text = text.replace("{ID}",date);
                     //file_name = __dirname + "/CreateQuery/" + "query_insert_" + f_name + ".txt";
-                    file_name = 'https://junkatsuyu123.github.io/CreateEmojiQuerySite/' + "/docs/CreateQuery/" + "query_insert_" + f_name + ".txt";
+                    file_name = 'https://junkatsuyu123.github.io/CreateEmojiQuerySite/' + "CreateQuery/" + "query_insert_" + f_name + ".txt";
                    // alert("今から書き込みます");
                     if (fs.existsSync( file_name )) {
                         fs.appendFile(file_name, text,  'utf-8',(err) => {
@@ -90,7 +90,7 @@ app.post("/", function (request, response) {
                     response.download(file_name);
                 }
                 //return response.sendFile(__dirname + '/docs' + "/index.html");
-                return response.sendFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+'docs'+"/index.html");
+                return response.sendFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"index.html");
           })
       }
 });
