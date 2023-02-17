@@ -66,6 +66,7 @@ app.post("/", function (request, response) {
                     text = text.replace("{ID}",date);
                     //file_name = __dirname + "/CreateQuery/" + "query_insert_" + f_name + ".txt";
                     file_name = __dirname + "/docs/CreateQuery/" + "query_insert_" + f_name + ".txt";
+                    console.log(text);
                     if (fs.existsSync( file_name )) {
                         fs.appendFile(file_name, text,  'utf-8',(err) => {
                             if (err) throw err;
