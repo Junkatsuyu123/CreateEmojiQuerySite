@@ -27,7 +27,7 @@ app.listen( port );
 console.log("server starting on " + port + " ...");
 app.post("/", function (request, response) {
     if (request.method === 'POST') {
-        console.log(__dirname + '/docs');
+        console.log(__dirname + '/docs'+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         var file_name = '';
         var data = '';
         request.on('data', function (chunk) {
