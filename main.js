@@ -69,7 +69,6 @@ app.post("/", function (request, response) {
                     text = text.replace("{ID}",date);
                     //file_name = __dirname + "/CreateQuery/" + "query_insert_" + f_name + ".txt";
                     file_name = 'https://junkatsuyu123.github.io/CreateEmojiQuerySite/' + "CreateQuery/" + "query_insert_" + f_name + ".txt";
-                   // alert("今から書き込みます");
                     if (fs.existsSync( file_name )) {
                         fs.appendFile(file_name, text,  'utf-8',(err) => {
                             if (err) throw err;
@@ -91,8 +90,8 @@ app.post("/", function (request, response) {
                 if (fs.existsSync(file_name)) {
                     response.download(file_name);
                 }
-                return response.sendFile(__dirname + '/docs' + "/index.html");
-                //return response.sendFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"index.html");
+                //return response.sendFile(__dirname + '/docs' + "/index.html");
+                return response.sendFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"index.html");
           })
       }
 });
