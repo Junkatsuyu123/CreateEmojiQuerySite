@@ -4,6 +4,10 @@ const http = require("http");
 //const server = http.createServer();
 const fs = require("fs");
 //var html = fs.readFileSync('./index.html');
+const cors = require('cors');
+const corsOptions = {
+    origin: 'https://junkatsuyu123.github.io'
+  }
 require("date-utils");
 const DAYS_MSEC = 86400000;
 const HOUR_MSEC = 3600000;
@@ -16,7 +20,7 @@ const TXT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".spl
 var express = require("express");
 var app = express();
 
-app.use( express.static(  __dirname + '/docs' ) );
+app.use( express.static(  __dirname + '/docs' ) ,cors(corsOptions));
 
 //app.use( express.static('https://junkatsuyu123.github.io/CreateEmojiQuerySite' + '/docs' ) );
 
