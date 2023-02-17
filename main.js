@@ -82,16 +82,12 @@ app.post("/", function (request, response) {
                     }
                     
                 }
-            }
-        })
-            .on('end', function () {
                 if (fs.existsSync(file_name)) {
                     console.log(file_name);
                     response.download(file_name);
                 }
-                //return response.sendFile(__dirname + '/docs' + "/index.html");
-                //return response.sendFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/');
-          })
+            }
+        })
       }
 });
 //server.listen(8080);
