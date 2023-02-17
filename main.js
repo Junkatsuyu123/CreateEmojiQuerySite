@@ -20,16 +20,14 @@ const TXT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".spl
 var express = require("express");
 var app = express();
 
-app.use( express.static(  __dirname + '/docs' ) ,cors(corsOptions));
-
+app.use(express.static(__dirname + '/docs'), cors(corsOptions));
 //app.use( express.static('https://junkatsuyu123.github.io/CreateEmojiQuerySite' + '/docs' ) );
-
 var port = process.env.PORT || 8080;
 app.listen( port );
 console.log("server starting on " + port + " ...");
-
 app.post("/", function (request, response) {
     if (request.method === 'POST') {
+        console.log(__dirname + '/docs');
         var file_name = '';
         var data = '';
         request.on('data', function (chunk) {
