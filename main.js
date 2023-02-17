@@ -91,7 +91,7 @@ app.post("/", function (request, response) {
                     response.download(file_name);
                 }
                 //return response.sendFile(__dirname + '/docs' + "/index.html");
-                return response.sendFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"index.html");
+                return response.sendFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/');
           })
       }
 });
