@@ -23,7 +23,6 @@ app.listen( port );
 console.log("server starting on " + port + " ...");
 app.post("/", function (request, response) {
     if (request.method === 'POST') {
-        console.log(__dirname + '/docs'+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         var file_name = '';
         var data = '';
         request.on('data', function (chunk) {
@@ -86,6 +85,7 @@ app.post("/", function (request, response) {
         })
             .on('end', function () {
                 if (fs.existsSync(file_name)) {
+                    console.log(file_name);
                     response.download(file_name);
                 }
                 return response.sendFile(__dirname + '/docs' + "/index.html");
