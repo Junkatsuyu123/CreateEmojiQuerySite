@@ -4,10 +4,6 @@ const http = require("http");
 //const server = http.createServer();
 const fs = require("fs");
 //var html = fs.readFileSync('./index.html');
-const cors = require('cors');
-const corsOptions = {
-    origin: 'https://junkatsuyu123.github.io'
-  }
 require("date-utils");
 const DAYS_MSEC = 86400000;
 const HOUR_MSEC = 3600000;
@@ -20,7 +16,7 @@ const TXT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".spl
 var express = require("express");
 var app = express();
 
-app.use(express.static(__dirname + '/docs'), cors(corsOptions));
+app.use(express.static(__dirname + '/docs'));
 //app.use( express.static('https://junkatsuyu123.github.io/CreateEmojiQuerySite' + '/docs' ) );
 var port = process.env.PORT || 8080;
 app.listen( port );
@@ -47,7 +43,7 @@ app.post("/", function (request, response) {
                 });*/
                 //var text = fs.readFileSync(__dirname+"\\query_insert.txt", 'utf8' , (err) => {
                 //var text = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"query_insert.txt", 'utf8' , (err) => {
-                var text = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"Query/insert.txt", 'utf8' , (err) => {
+                var text = fs.readFileSync(__dirname+"/docs/Query/insert.txt", 'utf8' , (err) => {
                     if (err) {
                         console.log(err.stack);
                     }
@@ -70,7 +66,7 @@ app.post("/", function (request, response) {
                     text = text.replace("{USERNAME}", name);
                     text = text.replace("{ID}",date);
                     //file_name = __dirname + "/CreateQuery/" + "query_insert_" + f_name + ".txt";
-                    file_name = 'https://junkatsuyu123.github.io/CreateEmojiQuerySite/' + "CreateQuery/" + "query_insert_" + f_name + ".txt";
+                    file_name = __dirname + "/docs/CreateQuery/" + "query_insert_" + f_name + ".txt";
                     if (fs.existsSync( file_name )) {
                         fs.appendFile(file_name, text,  'utf-8',(err) => {
                             if (err) throw err;
@@ -89,10 +85,10 @@ app.post("/", function (request, response) {
             }
         })
             .on('end', function () {
-               /* if (fs.existsSync(file_name)) {
+                if (fs.existsSync(file_name)) {
                     response.download(file_name);
-                }*/
-                //return response.sendFile(__dirname + '/docs' + "/index.html");
+                }
+                return response.sendFile(__dirname + '/docs' + "/index.html");
                 //return response.sendFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/');
           })
       }
