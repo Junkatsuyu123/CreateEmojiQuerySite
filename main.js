@@ -92,7 +92,7 @@ app.post("/", function (request, response) {
                     } else {
                         console.log('ファイル・ディレクトリは存在します。');
                         response.download(file_name);
-                        fs.unlink('path/file.txt', (err) => {
+                        fs.unlink(file_name, (err) => {
                             if (err) throw err;
                             console.log('削除しました。');
                         });
