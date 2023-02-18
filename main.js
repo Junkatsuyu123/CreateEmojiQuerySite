@@ -82,10 +82,22 @@ app.post("/", function (request, response) {
                     }
                     
                 }
-                if (fs.existsSync(file_name)) {
+                fs.stat(file_name, (error, stats) => {
+                    if (error) {
+                      if (error.code === 'ENOENT') {
+                        console.log('ファイル・ディレクトリは存在しません。');
+                      } else {
+                        console.log(error);
+                      }
+                    } else {
+                        console.log('ファイル・ディレクトリは存在します。');
+                        response.download(file_name);
+                    }
+                  });
+                /*if (fs.existsSync(file_name)) {
                     console.log(file_name);
                     response.download(file_name);
-                }
+                }*/
             }
         })
       }
