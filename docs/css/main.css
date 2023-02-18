@@ -16,6 +16,6 @@ body{
     margin-left: 20px;
     width: 250px;
 }
-.QueryButton{
+#QueryButton{
     width: 2000px;
 }

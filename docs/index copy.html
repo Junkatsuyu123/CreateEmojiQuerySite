@@ -19,19 +19,10 @@
                 <tr class="Row">
                     <th colspan="2">追加する絵文字の個数</th>
                     <td> <input type="number" min="0" name="EmojiNum" placeholder="追加する絵文字の個数" class="TextBox"></td>
-                    <td><button type="button"  id = "CreateBtn" onclick="button_click()" >クエリ作成</button></td>
+                    <td><button type="submit"  class = "CreateBtn" onclick="button_click()" class="QueryButton">クエリ作成</button></td>
                 </tr>
             </thead>
         </table>
     </form>
-    <script>
-        var req = new XMLHttpRequest();
-        function button_click(){
-            console.log("test");
-            document.getElementById('result');
-            document.getElementById('result');
-            req.send('POST','/docs/index.html',true)
-        }
-    </script>
 </body>
 </html>
