@@ -5,6 +5,7 @@ const http = require("http");
 const fs = require("fs");
 //var html = fs.readFileSync('./index.html');
 require("date-utils");
+const path = require("path");
 const DAYS_MSEC = 86400000;
 const HOUR_MSEC = 3600000;
 const MINUTE_MSEC = 60000;
@@ -12,121 +13,120 @@ const SECOND_MSEC = 1000;
 
 const TXT = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split('');
 
-var https = require("https");
-var html = require('fs').readFileSync(__dirname+'/docs/index.html');
+const URL = __dirname + '/docs/index.html';
 
-https.createServer(function(req, res) {
+var html = fs.readFileSync(URL);
+var express = require('express');
+var app = express()
+app.use(express.static(path.join(__dirname,'/docs')));
+//app.use( express.static('https://junkatsuyu123.github.io/CreateEmojiQuerySite' + '/docs' ) );
+var port = process.env.PORT || 8080;
+app.listen(port);
+const axios = require('axios').default;
+var data;
+/*const url = axios.get("/")
 
-    if (req.method === 'GET') {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(html);
-    } else if (req.method === 'POST') {
-        var file_name = '';
-        var data = '';
-        request.on('data', function (chunk) {
-            if (chunk != null) {
-                var IDList = new Array();
-                data += chunk
-                var name = data.split('&')[0].split('=')[1];
-                var num = data.split('&')[1].split('=')[1];
-                //fs.copyFile(__dirname+'/docs'+"/Query/insert.txt", 'query_insert.txt', (err) => {
-                /*fs.copyFile('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"Query/insert.txt", 'query_insert.txt', (err) => {
-                    if (err) {
-                        console.log(err.stack);
-                    }
-                    else {
-                        console.log('Done.');
-                    }
-                });*/
-                //var text = fs.readFileSync(__dirname+"\\query_insert.txt", 'utf8' , (err) => {
-                //var text = fs.readFileSync('https://junkatsuyu123.github.io/CreateEmojiQuerySite/'+"query_insert.txt", 'utf8' , (err) => {
-                var text = fs.readFileSync(__dirname + "/docs/Query/insert.txt", 'utf8', (err) => {
-                    if (err) {
-                        console.log(err.stack);
-                    }
-                    else {
-                        console.log('Done.');
-                    }
-                })
-                var flag = false;
-                for (let i = 0; i < Number(num); i++) {
-                    const current_date = new Date();
-                    const old_date = new Date(2000, 1, 1, 9, 0, 0);
-                    var date = (current_date - old_date).toString(36).padStart(8, '0') + TXT[Math.floor(Math.random() * TXT.length)] + TXT[Math.floor(Math.random() * TXT.length)];
-                    while (IDList.includes(date)) {
-                        date = (current_date - old_date).toString(36).padStart(8, '0') + TXT[Math.floor(Math.random() * TXT.length)] + TXT[Math.floor(Math.random() * TXT.length)];
-                    }
-                    var f_name;
-                    if (i == 0) {
-                        f_name = name + '_' + date;
-                    }
-                    text = text.replace("{USERNAME}", name);
-                    text = text.replace("{ID}", date);
-                    //file_name = __dirname + "/CreateQuery/" + "query_insert_" + f_name + ".txt";
-                    file_name = __dirname + "/docs/CreateQuery/" + "query_insert_" + f_name + ".txt";
-                    console.log(text);
-                    if (fs.existsSync(file_name)) {
-                        fs.appendFile(file_name, text, 'utf-8', (err) => {
-                            if (err) throw err;
-                            console.log('正常に書き込みが完了しました');
-                        });
-                    }
-                    else {
-                        fs.writeFile(file_name, text, 'utf-8', (err) => {
-                            if (err) throw err;
-                            flag = true;
-                            console.log('正常に書き込みが完了しました');
-                        });
-                    }
-                }
-                fs.stat(file_name, (error, stats) => {
-                    if (error) {
-                        if (error.code === 'ENOENT') {
-                            console.log('ファイル・ディレクトリは存在しません。');
-                        } else {
-                            console.log(error);
-                        }
-                    } else {
-                        console.log('ファイル・ディレクトリは存在します。');
-                        response.download(file_name);
-                    }
-                });
-                /*fs.stat(file_name, (error, stats) => {
-                    if (error) {
-                      if (error.code === 'ENOENT') {
-                        console.log('ファイル・ディレクトリは存在しません。');
-                      } else {
-                        console.log(error);
-                      }
-                    } else {
-                        console.log('ファイル・ディレクトリは存在します。');
-                        response.download(file_name);
-                        fs.unlink(file_name, (err) => {
-                            if (err) throw err;
-                            console.log('削除しました。');
-                        });
-                    }
-                  });*/
-                /*if (fs.existsSync(file_name)) {
-                    console.log(file_name);
-                    response.download(file_name);
-                }*/
-            }
-        })
+  .then(response => {
+    })
+    .catch(err => {
+        console.log("err:", err);
+    });
+*/
+/*axios.interceptors.request.use((config) => {
+      console.log(config)
+      return config;
+    });*/
+/*axios.post('/','')
+  .then(response => {
+    console.log('test56');
+  });*/
+  
+/*axios.post('/', {
+  UserID: 'tesst13',
+  EmojiNum:5
+})
+  .then((req, res) => {
+    console.log("123");
+  })
+.catch(err => {
+  console.log("err2:", err);
+});*/
+
+app.get('/create', async (req, res)=>{
+  try {
+    const response = await axios.post('/');
+    var user_id = req.query.UserID;
+    var num = req.query.EmojiNum;
+    if (user_id == '' || num == '') {
+      
     }
-        request.on('end', function () {
-            //response.sendFile(__dirname + '/docs/index.html');
-            response.writeHead(303, { 'Location': '/' }); // indexページに303リダイレクト
-            if (file_name != '') {
-                fs.stat(file_name, (error, stats) => {
-                    fs.unlink(file_name, (err) => {
-                        if (err) throw err;
-                        console.log('削除しました。');
-                    });
-                    file_name = "";
-                });
+    else {
+      var IDList = new Array();
+      var text = fs.readFileSync(__dirname+"/docs/Query/insert.txt", 'utf8' , (err) => {
+          if (err) {
+              console.log(err.stack);
+          }
+          else {
+              console.log('Done.');
+          }
+      })
+      var flag = false;
+      for (let i = 0; i < Number(num); i++) {
+          var tmp = text;
+          const current_date = new Date();
+          const old_date = new Date(2000, 1, 1, 9, 0, 0);
+          var date = (current_date - old_date).toString(36).padStart(8, '0') + TXT[Math.floor(Math.random() * TXT.length)] + TXT[Math.floor(Math.random() * TXT.length)];
+          while (IDList.includes(date)) {
+            date = (current_date - old_date).toString(36).padStart(8, '0') + TXT[Math.floor(Math.random() * TXT.length)] + TXT[Math.floor(Math.random() * TXT.length)];
+          }
+          var f_name;
+          if (i == 0) {
+            f_name = user_id + '_' + date;
+          }
+          tmp = tmp.replace("{USERNAME}", user_id);
+          tmp = tmp.replace("{ID}", date);
+          file_name = __dirname + "/docs/CreateQuery/" + "query_insert_" + f_name + ".txt";
+
+          if (fs.existsSync(file_name)) {
+            fs.appendFile(file_name, tmp, 'utf-8', (err) => {
+              if (err) throw err;
+              console.log('正常に書き込みが完了しました');
+            });
+          }
+          else {
+            fs.writeFile(file_name, tmp, 'utf-8', (err) => {
+              if (err) throw err;
+              console.log('正常に書き込みが完了しました');
+            });
+          }
+          IDList.push(date);
+         } 
+      }
+      fs.stat(file_name, (error, stats) => {
+          if (error) {
+            if (error.code === 'ENOENT') {
+              console.log('ファイル・ディレクトリは存在しません。');
+            } else {
+              console.log(error);
             }
-        })
-
-
-}).listen(3000);
+          } else {
+              console.log('ファイル・ディレクトリは存在します。');
+              res.download(file_name);
+          }
+      });
+    req.on('end', function () {
+      if (file_name != '') {
+          fs.stat(file_name, (error, stats) => {
+              fs.unlink(file_name, (err) => {
+                  if (err) throw err;
+                  console.log('削除しました。');
+              });
+              file_name = "";
+          });
+      }
+    })
+  }
+  catch (error) {
+    console.log(error);
+  }
+})
