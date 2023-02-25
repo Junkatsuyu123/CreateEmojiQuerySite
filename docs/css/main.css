@@ -1,21 +1,48 @@
 body{
     margin-left: 5%;
     margin-right: 5%;
-    background-color: rgb(221, 221, 221);
+    background-image: url('../image/wood-texture_00005.jpg');
+    background-size: cover;
 }
-#Title{
-    color: blanchedalmond;
+#title{
+    margin-top: 60px;
+    margin-bottom: 0px;
+    text-align: left;
+    width: 30%;
+}
+
+.nav{
     width: auto;
-    height: auto;
+}
+.menu{
+    background-color: rgb(255, 255, 255);
+    width: auto;
+}
+.menu_item {
+    width: auto;
+    background-color: rgb(29, 139, 35);
+    list-style: none;
+    display: inline-block;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-family: monospace;
+    font-size: 25px;
+    -webkit-text-stroke: 1px;
+    -webkit-text-stroke-color: rgb(119, 97, 0);
+  }
+
+.row{
     text-align: left;
+    color: white;
 }
-.Row{
-    text-align: left;
+.label{
+    font-size: 25px;
 }
-.TextBox{
-    margin-left: 20px;
-    width: 250px;
+.text_box{
+    margin-left: 25px;
+    width: 280px;
+    font-size: 25px;
 }
-#QueryButton{
-    width: 2000px;
+#create_btn{
+    font-size: 25px;
 }

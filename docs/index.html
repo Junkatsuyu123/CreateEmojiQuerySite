@@ -9,23 +9,66 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
-    <h1 id="Title">絵文字一括登録クエリ　作成</h1>
-    <form method="Get" name="myform" action="/create">
+    
+    <div id="header">
+
+    </div>
+    <script>
+        $(function(){
+            $('#header').load('./header.html'); // #headerにheader.htmlを読み込む
+        });
+    </script>
+    <form method="Get" name="myform" action="/create" id="form">
         <table>
             <thead>
-                <tr class="Row">
-                    <th colspan="2">ユーザID</th>
-                    <td><input type="text" name="UserID" id="UserID"  placeholder="ユーザID" class="TextBox"></td>
+                <tr class="row">
+                    <th colspan="2" class="label">ユーザID</th>
+                    <td><input type="text" name="UserID" id="UserID"  placeholder="ユーザID" class="text_box"></td>
+                    <td><label hidden="true">ユーザIDを入力してください</label></td>
                 </tr>
-                <tr class="Row">
-                    <th colspan="2">追加する絵文字の個数</th>
-                    <td> <input type="number" min="0" name="EmojiNum" placeholder="追加する絵文字の個数" class="TextBox"></td>
-                    <td><button type="submit"  id = "CreateBtn">クエリ作成</button></td>
+                <tr class="row">
+                    <th colspan="2" class="label">追加する絵文字の個数</th>
+                    <td> <input type="number" min="1" name="EmojiNum" id="EmojiNum" placeholder="追加する絵文字の個数" class="text_box"></td>
+                    <td><button type="submit"  id = "create_btn" >クエリ作成</button></td>
+                    <td><label hidden="true">追加する絵文字の個数を入力してください</label></td>
                 </tr>
             </thead>
         </table>
     </form>
     <script>
+        const form = document.querySelector('#form');
+        const submitButton = document.querySelector('#create_btn');
+        var flag=true;
+        form.addEventListener('submit', (event) => {
+            var id = document.querySelector('#UserID');
+            var num = document.querySelector('#EmojiNum');
+            if(id.value == ''){
+                alert('ユーザIDを入力してください');
+                flag=false;
+            }
+            else if(num.value ==''){
+                alert('追加する絵文字の個数を入力してください');
+                flag=false;
+            }
+            else if( Number(num.value)<=0){
+                alert('0より大きい値を入力してください');
+                flag=false;
+            }
+            if(!flag){
+                event.stopPropagation();
+                event.preventDefault();
+                flag=true
+            }
+            else{
+                const formData = new formData(form);
+                const options = {
+                method: 'Get',
+                body: formData,
+                }
+                const url = form.getAttribute('action');
+                fetch(url, options);
+            }
+        })
     </script>
 </body>
 </html>

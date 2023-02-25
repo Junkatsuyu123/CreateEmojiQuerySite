@@ -1,9 +1,5 @@
-
-
 const http = require("http");
-//const server = http.createServer();
 const fs = require("fs");
-//var html = fs.readFileSync('./index.html');
 require("date-utils");
 const path = require("path");
 const DAYS_MSEC = 86400000;
@@ -19,46 +15,18 @@ var html = fs.readFileSync(URL);
 var express = require('express');
 var app = express()
 app.use(express.static(path.join(__dirname,'/docs')));
-//app.use( express.static('https://junkatsuyu123.github.io/CreateEmojiQuerySite' + '/docs' ) );
 var port = process.env.PORT || 8080;
 app.listen(port);
 const axios = require('axios').default;
 var data;
-/*const url = axios.get("/")
-
-  .then(response => {
-    })
-    .catch(err => {
-        console.log("err:", err);
-    });
-*/
-/*axios.interceptors.request.use((config) => {
-      console.log(config)
-      return config;
-    });*/
-/*axios.post('/','')
-  .then(response => {
-    console.log('test56');
-  });*/
-  
-/*axios.post('/', {
-  UserID: 'tesst13',
-  EmojiNum:5
-})
-  .then((req, res) => {
-    console.log("123");
-  })
-.catch(err => {
-  console.log("err2:", err);
-});*/
-
 app.get('/create', async (req, res)=>{
   try {
     const response = await axios.post('/');
+    var file_name = '';
     var user_id = req.query.UserID;
     var num = req.query.EmojiNum;
     if (user_id == '' || num == '') {
-      
+      res.sendFile(URL);
     }
     else {
       var IDList = new Array();
@@ -87,7 +55,7 @@ app.get('/create', async (req, res)=>{
           tmp = tmp.replace("{ID}", date);
           file_name = __dirname + "/docs/CreateQuery/" + "query_insert_" + f_name + ".txt";
 
-          if (fs.existsSync(file_name)) {
+          if (fs.existsSync(file_name) || flag) {
             fs.appendFile(file_name, tmp, 'utf-8', (err) => {
               if (err) throw err;
               console.log('正常に書き込みが完了しました');
@@ -98,22 +66,24 @@ app.get('/create', async (req, res)=>{
               if (err) throw err;
               console.log('正常に書き込みが完了しました');
             });
+            flag = true;
           }
           IDList.push(date);
-         } 
-      }
+      } 
       fs.stat(file_name, (error, stats) => {
-          if (error) {
-            if (error.code === 'ENOENT') {
-              console.log('ファイル・ディレクトリは存在しません。');
-            } else {
-              console.log(error);
-            }
+        if (error) {
+          if (error.code === 'ENOENT') {
+            console.log('ファイル・ディレクトリは存在しません。');
           } else {
-              console.log('ファイル・ディレクトリは存在します。');
-              res.download(file_name);
+            console.log(error);
           }
-      });
+        } else {
+            console.log('ファイル・ディレクトリは存在します。');
+            res.download(file_name);
+        }
+    });
+      }
+      
     req.on('end', function () {
       if (file_name != '') {
           fs.stat(file_name, (error, stats) => {
