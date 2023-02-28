@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' media='screen' href='./css/explain.css'>
+    <title>Document</title>
+</head>
+<body>
+    <h1>事前準備</h1>
+    <p>絵文字を追加するインスタンスに、１つアカウントを用意する(以下、このアカウントのことを絵文字垢という)</p>
+    <p>例ではユーザー名を「add_emojis」としているが、利用者が分かれば名前はなんでもよい</p>
+    <div class="ex_image">
+        <img src="./image/EmojiAccount.PNG"  title="account">
+    </div>
+    <h1>使い方</h1>
+    <p>１．絵文字垢にログインし、ドライブに追加したい画像をアップロードする</p>
+    <div class="ex_image">
+        <img src="./image/example1.PNG" title="drive">
+    </div>
+    <p>２．このサイトでクエリを作成する</p>
+    <div class="ex_image">
+        <img src="./image/example2.PNG"  title="site">
+    </div>
+    <p>ユーザID：登録時に決めた英数字のID(@の後ろについている英数字)</p>
+    <p>追加する絵文字の個数：追加する絵文字の個数</p>
+    <p>３．作成したら以下のコマンドを１つずつ入力していく</p>
+    <div id="explain3">
+        <p class="explain_text">/*まずCONTAINER_ID を取得*/</p>
+        <p class="explain_text">sudo docker ps -a</p>
+        <p class="explain_text">/*DBのコンテナに入る*/</p>
+        <p class="explain_text">sudo docker exec -it DBのCONTAINER_ID /bin/bash</p>
+        <p class="explain_text">/*misskeyのDBに接続*/</p>
+        <p class="explain_text">psql -h localhost -p ポート番号 -U ロール名 -d DB名</p>
+        <p class="explain_text">/*初期値のまま使用している場合は以下のコマンドで接続できる*/</p>
+        <p class="explain_text">psql -h localhost -p 5432 -U misskey -d misskey</p>
+        <p class="explain_text">/*接続できたら作成したクエリをコピペすれば絵文字が追加される*/</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+.ex_image{
+    width: 35%;
+    height: 35%;
+    margin-left: 10px;
+}
+
+li{
+    font-size: medium;
+}
+
+p{
+    font-size: medium;
+}
+
+#explain3{
+    background-color: rgb(92, 92, 92);
+    margin-right: 60%;
+}
+.explain_text{
+    padding-left: 10px;
+    padding-top: 0px;
+    color: white;
+}

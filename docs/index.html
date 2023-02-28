@@ -35,6 +35,14 @@
             </thead>
         </table>
     </form>
+    <div id="explain">
+
+    </div>
+    <script>
+        $(function(){
+            $('#explain').load('./explain.html'); // #headerにheader.htmlを読み込む
+        });
+    </script>
     <script>
         const form = document.querySelector('#form');
         const submitButton = document.querySelector('#create_btn');

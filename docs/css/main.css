@@ -46,3 +46,9 @@ body{
 #create_btn{
     font-size: 25px;
 }
+
+#explain{
+    background-color: white;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
