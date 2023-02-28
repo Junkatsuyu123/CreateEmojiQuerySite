@@ -17,11 +17,9 @@ var app = express()
 app.use(express.static(path.join(__dirname,'/docs')));
 var port = process.env.PORT || 8080;
 app.listen(port);
-const axios = require('axios').default;
 var data;
 app.get('/create', async (req, res)=>{
   try {
-    const response = await axios.post('/');
     var file_name = '';
     var user_id = req.query.UserID;
     var num = req.query.EmojiNum;
